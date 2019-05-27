@@ -14,26 +14,19 @@ resource "aws_elastic_beanstalk_environment" "StoreOne_app_env" {
     namespace = "aws:ec2:vpc"
     name      = "VPCId"
     value     = "${aws_vpc.StoreOne-VPC.id}"
-
-    # value = "${aws_default_vpc.default.id}"
   }
 
   setting {
     namespace = "aws:ec2:vpc"
     name      = "Subnets"
     value     = "${aws_subnet.StoreOne-SN1.id}"
-
-    # value   = "${aws_subnet.StoreOne-SN1.id},${aws_subnet.StoreOne-SN2.id}"
-    # value   = "${element(data.aws_subnet_ids.sn1a.ids, 0)},${element(data.aws_subnet_ids.sn1b.ids, 0)}"
   }
 
   setting {
     namespace = "aws:ec2:vpc"
     name      = "ELBSubnets"
     value     = "${aws_subnet.StoreOne-SN1.id}"
-
     # value     = "${aws_subnet.StoreOne-SN1.id},${aws_subnet.StoreOne-SN2.id}"
-    # value = "${element(data.aws_subnet_ids.sn1a.ids, 0)},${element(data.aws_subnet_ids.sn1b.ids, 0)}"
   }
 
   setting {
@@ -131,19 +124,3 @@ resource "aws_elastic_beanstalk_environment" "StoreOne_app_env" {
     value     = "3306"
   }
 }
-
-# --------------------------------------------------------------------
-/*
-  # VPC settings
-  setting {
-    namespace = "aws:ec2:vpc"
-    name = "Subnets"
-    value = "${join(",", var.worker_subnets)}"
-  }
-  setting {
-    namespace = "aws:ec2:vpc"
-    name = "ELBSubnets"
-    value = "${join(",", var.elb_subnets)}"
-  }
-*/
-

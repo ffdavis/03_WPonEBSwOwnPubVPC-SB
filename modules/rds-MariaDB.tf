@@ -1,29 +1,3 @@
-#-----
-# Pulling data resource for private subnets with relevant tag
-/* 
-# 3 #
-data "aws_subnet_ids" "sn1a" {
-  vpc_id = "${aws_default_vpc.default.id}"
-
-  tags = {
-    Name = "AWS-SN-use1a-Def"
-  }
-}
-
-data "aws_subnet_ids" "sn1b" {
-  vpc_id = "${aws_default_vpc.default.id}"
-
-  tags = {
-    Name = "AWS-SN-use1b-Def"
-  }
-}
-*/
-# ----
-# 1 # data "aws_subnet_ids" "public" {
-#  vpc_id = "${aws_default_vpc.default.id}"
-#}
-# subnet_ids = ["${element(data.aws_subnet_ids.public.ids, 0)}", "${element(data.aws_subnet_ids.public.ids, 1)}"]
-
 resource "aws_db_instance" "storeone-db" {
   identifier             = "storeonedb"                               # DB Instance
   allocated_storage      = "5"
@@ -45,8 +19,5 @@ resource "aws_db_instance" "storeone-db" {
 
 resource "aws_db_subnet_group" "StoreOne-SNG" {
   name = "main"
-
-  # 2 # subnet_ids = ["subnet-47aac569", "subnet-5bf5c511"]
-  # 3 # subnet_ids = ["${element(data.aws_subnet_ids.sn1a.ids, 0)}", "${element(data.aws_subnet_ids.sn1b.ids, 0)}"]
   subnet_ids = ["${aws_subnet.StoreOne-SN1.id}", "${aws_subnet.StoreOne-SN2.id}"]
 }

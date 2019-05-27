@@ -1,6 +1,3 @@
-# resource "aws_default_vpc" "default" {}
-# vpc_id = "${aws_default_vpc.default.id}"
-
 resource "aws_security_group" "StoreOneSG-DB" {
   # SG - DB  --------------------------------------------------------
   name = "StoreOneSG-DB" # SG 3306 
