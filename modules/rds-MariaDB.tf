@@ -18,6 +18,6 @@ resource "aws_db_instance" "storeone-db" {
 }
 
 resource "aws_db_subnet_group" "StoreOne-SNG" {
-  name = "main"
+  name       = "main"
   subnet_ids = ["${aws_subnet.StoreOne-SN1.id}", "${aws_subnet.StoreOne-SN2.id}"]
 }

@@ -26,6 +26,7 @@ resource "aws_elastic_beanstalk_environment" "StoreOne_app_env" {
     namespace = "aws:ec2:vpc"
     name      = "ELBSubnets"
     value     = "${aws_subnet.StoreOne-SN1.id}"
+
     # value     = "${aws_subnet.StoreOne-SN1.id},${aws_subnet.StoreOne-SN2.id}"
   }
 
